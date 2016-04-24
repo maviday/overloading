@@ -110,16 +110,28 @@ istream& operator >>(istream &in, bigNumber &x){			//input
 }
 
 bool bigNumber::operator <(bigNumber x){					//less than
-	int temp = MAX_DIGITS;
+
+    int temp = MAX_DIGITS;
 	bigNumber y = *this;
-	while (x.num[temp] == 0 and y.num[temp] == 0 and temp > 0) 
+	bool result = false;
+
+	while (x.num[temp] == 0 && y.num[temp] == 0 && temp > 0) {
+	    cout << '.';
 		temp--;
-		for (temp; temp >= 0; temp--){
-			if(y.num[temp] > x.num[temp]) 
-				return false;
-			else
-				return true;
-		}			
+	}
+
+    for (; temp >= 0; temp--) {
+        cout << 'x';
+        if (y.num[temp] > x.num[temp]) {
+            result = false;
+            break;
+        } else {
+            result = true;
+            break;
+        }
+    }
+    cout << result;
+    return result;
 }
 
 //bool bigNumber::operator  >(bigNumber){			//greater than
